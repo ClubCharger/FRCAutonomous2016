@@ -156,25 +156,25 @@ public class RobotMap {
 	// AUTONOMOUS DRIVE SPEEDS
 
 	public static final double AUTONOMOUS_SPEED_BETWEEN_DISTANCES = 0.5;
-	public static final double AUTONOMOUS_TURN_SPEED = 0.4;
+	public static final double AUTONOMOUS_TURN_SPEED = 0.5;
 	public static final double LOW_BAR_DEFENSE_DRIVE_SPEED = 0.5;
 	public static final double MOAT_DEFENSE_DRIVE_SPEED = 0.5;
-	public static final double RAMPARTS_DEFENSE_DRIVE_SPEED = 0.4;
+	public static final double RAMPARTS_DEFENSE_DRIVE_SPEED = 0.5;
 	public static final double ROCK_WALL_DEFENSE_DRIVE_SPEED = 0.5;
-	public static final double ROUGH_TERRAIN_DEFENSE_DRIVE_SPEED = 0.2;
+	public static final double ROUGH_TERRAIN_DEFENSE_DRIVE_SPEED = 0.5;
 
 	// AUTONOMOUS DEFENSE DRIVE DISTANCE
 
 	// 121.61 inches -> 10.134 feet
-	public static final int AUTONOMOUS_DISTANCE_BETWEEN_DEFENSES = 1000; // TODO
-	public static final int TURN_DISTANCE = 1000; // TODO
-	public static final int LOW_BAR_DEFENSE_DRIVE_DISTANCE = 1000; // TODO
-	public static final int MOAT_DEFENSE_DRIVE_DISTANCE = 1000; // TODO
-	public static final int RAMPARTS_DEFENSE_DRIVE_DISTANCE = 1000; // TODO
-	public static final int DRAWBRIDGE_DEFENSE_DRIVE_DISTANCE = 1000; // TODO
-	public static final int SALLY_PORT_DEFENSE_DRIVE_DISTANCE = 1000; // TODO
-	public static final int ROCK_WALL_DEFENSE_DRIVE_DISTANCE = 1000; // TODO
-	public static final int ROUGH_TERRAIN_DEFENSE_DRIVE_DISTANCE = 1000; // TODO
+	public static final int AUTONOMOUS_DISTANCE_BETWEEN_DEFENSES = 200; // TODO
+	public static final int TURN_DISTANCE = 200; // TODO
+	public static final int LOW_BAR_DEFENSE_DRIVE_DISTANCE = 200; // TODO
+	public static final int MOAT_DEFENSE_DRIVE_DISTANCE = 200; // TODO
+	public static final int RAMPARTS_DEFENSE_DRIVE_DISTANCE = 200; // TODO
+	public static final int DRAWBRIDGE_DEFENSE_DRIVE_DISTANCE = 200; // TODO
+	public static final int SALLY_PORT_DEFENSE_DRIVE_DISTANCE = 200; // TODO
+	public static final int ROCK_WALL_DEFENSE_DRIVE_DISTANCE = 200; // TODO
+	public static final int ROUGH_TERRAIN_DEFENSE_DRIVE_DISTANCE = 200; // TODO
 
 	// SHOOTER MOTOR PID
 

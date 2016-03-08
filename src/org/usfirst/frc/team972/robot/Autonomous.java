@@ -62,6 +62,8 @@ public class Autonomous {
 			rightDriveSpeed = 0;
 		}
 		Robot.botDrive.tankDrive(leftDriveSpeed, rightDriveSpeed);
+		SmartDashboard.putNumber("Left Speed", leftDriveSpeed);
+		SmartDashboard.putNumber("Right Speed", rightDriveSpeed);
 		return Robot.leftDriveEncoder.get() >= distance && Robot.rightDriveEncoder.get() <= -distance;
 	}
 
@@ -79,6 +81,8 @@ public class Autonomous {
 			rightDriveSpeed = 0;
 		}
 		Robot.botDrive.tankDrive(leftDriveSpeed, rightDriveSpeed);
+		SmartDashboard.putNumber("Left Speed", leftDriveSpeed);
+		SmartDashboard.putNumber("Right Speed", rightDriveSpeed);
 		return Robot.leftDriveEncoder.get() <= -distance && Robot.rightDriveEncoder.get() >= distance;
 	}
 
@@ -110,10 +114,8 @@ public class Autonomous {
 		long startTime = System.currentTimeMillis();
 
 		System.out.println("Autonomous State Machine Start");
-		while (r.isEnabled() && r.isAutonomous()) { // will automatically return
-													// out of method when
-													// finished with state
-													// machine
+		while (r.isEnabled() && r.isAutonomous()) {
+			// will automatically return out of method when finished with state machine
 			Robot.printEverything();
 			
 			
@@ -231,6 +233,9 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
+						SmartDashboard.putNumber("Left Speed", 0);
+						SmartDashboard.putNumber("Right Speed", 0);
+						SmartDashboard.putString("Autonomous Mode", "FINISHED");
 						return;
 					}
 					SmartDashboard.putString("Autonomous Mode", "First Drive Forward");
