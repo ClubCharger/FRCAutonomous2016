@@ -166,15 +166,16 @@ public class RobotMap {
 	// AUTONOMOUS DEFENSE DRIVE DISTANCE
 
 	// 121.61 inches -> 10.134 feet
-	public static final int AUTONOMOUS_DISTANCE_BETWEEN_DEFENSES = 200; // TODO
-	public static final int TURN_DISTANCE = 200; // TODO
-	public static final int LOW_BAR_DEFENSE_DRIVE_DISTANCE = 200; // TODO
-	public static final int MOAT_DEFENSE_DRIVE_DISTANCE = 200; // TODO
-	public static final int RAMPARTS_DEFENSE_DRIVE_DISTANCE = 200; // TODO
-	public static final int DRAWBRIDGE_DEFENSE_DRIVE_DISTANCE = 200; // TODO
-	public static final int SALLY_PORT_DEFENSE_DRIVE_DISTANCE = 200; // TODO
-	public static final int ROCK_WALL_DEFENSE_DRIVE_DISTANCE = 200; // TODO
-	public static final int ROUGH_TERRAIN_DEFENSE_DRIVE_DISTANCE = 200; // TODO
+	public static final int AUTONOMOUS_DISTANCE_BETWEEN_DEFENSES = 300; // TODO
+	public static final int LEFT_TURN_DISTANCE = 470; 
+	public static final int RIGHT_TURN_DISTANCE = 344; // TODO
+	public static final int LOW_BAR_DEFENSE_DRIVE_DISTANCE = 600; // TODO
+	public static final int MOAT_DEFENSE_DRIVE_DISTANCE = 600; // TODO
+	public static final int RAMPARTS_DEFENSE_DRIVE_DISTANCE = 600; // TODO
+	public static final int DRAWBRIDGE_DEFENSE_DRIVE_DISTANCE = 600; // TODO
+	public static final int SALLY_PORT_DEFENSE_DRIVE_DISTANCE = 600; // TODO
+	public static final int ROCK_WALL_DEFENSE_DRIVE_DISTANCE = 600; // TODO
+	public static final int ROUGH_TERRAIN_DEFENSE_DRIVE_DISTANCE = 600; // TODO
 
 	// SHOOTER MOTOR PID
 

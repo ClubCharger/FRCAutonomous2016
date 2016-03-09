@@ -49,14 +49,14 @@ public class Autonomous {
 		return Robot.leftDriveEncoder.get() >= distance && Robot.rightDriveEncoder.get() >= distance;
 	}
 	
-	public static boolean autonomousTurnClockwise(int distance, double speed) {
+	public static boolean autonomousTurnClockwise(int leftDistance, int rightDistance, double speed) {
 		double leftDriveSpeed, rightDriveSpeed;
-		if (Robot.leftDriveEncoder.get() < distance) {
+		if (Robot.leftDriveEncoder.get() < leftDistance) {
 			leftDriveSpeed = speed;
 		} else {
 			leftDriveSpeed = 0;
 		}
-		if (Robot.rightDriveEncoder.get() > -distance) {
+		if (Robot.rightDriveEncoder.get() > -rightDistance) {
 			rightDriveSpeed = -speed;
 		} else {
 			rightDriveSpeed = 0;
@@ -64,18 +64,18 @@ public class Autonomous {
 		Robot.botDrive.tankDrive(leftDriveSpeed, rightDriveSpeed);
 		SmartDashboard.putNumber("Left Speed", leftDriveSpeed);
 		SmartDashboard.putNumber("Right Speed", rightDriveSpeed);
-		return Robot.leftDriveEncoder.get() >= distance && Robot.rightDriveEncoder.get() <= -distance;
+		return Robot.leftDriveEncoder.get() >= leftDistance && Robot.rightDriveEncoder.get() <= -rightDistance;
 	}
 
 	// distance and speed should be positive
-	public static boolean autonomousTurnCounterclockwise(int distance, double speed) {
+	public static boolean autonomousTurnCounterclockwise(int leftDistance, int rightDistance, double speed) {
 		double leftDriveSpeed, rightDriveSpeed;
-		if (Robot.leftDriveEncoder.get() > -distance) {
+		if (Robot.leftDriveEncoder.get() > -leftDistance) {
 			leftDriveSpeed = -speed;
 		} else {
 			leftDriveSpeed = 0;
 		}
-		if (Robot.rightDriveEncoder.get() < distance) {
+		if (Robot.rightDriveEncoder.get() < rightDistance) {
 			rightDriveSpeed = speed;
 		} else {
 			rightDriveSpeed = 0;
@@ -83,7 +83,7 @@ public class Autonomous {
 		Robot.botDrive.tankDrive(leftDriveSpeed, rightDriveSpeed);
 		SmartDashboard.putNumber("Left Speed", leftDriveSpeed);
 		SmartDashboard.putNumber("Right Speed", rightDriveSpeed);
-		return Robot.leftDriveEncoder.get() <= -distance && Robot.rightDriveEncoder.get() >= distance;
+		return Robot.leftDriveEncoder.get() <= -leftDistance && Robot.rightDriveEncoder.get() >= rightDistance;
 	}
 
 	// TODO: Doesn't actually do anything
@@ -125,7 +125,7 @@ public class Autonomous {
 					SmartDashboard.putString("Autonomous Mode", "Lower Obstacle Motor");
 //					if (lowerObstacleMotor(startTime)) {
 //						Robot.obstacleMotor.set(0);
-						Timer.delay(2);
+						
 						RobotMap.autonomousMode = RobotMap.FIRST_DRIVE_FORWARD_MODE;
 //					}
 					break;
@@ -137,18 +137,18 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						Timer.delay(2);
+						
 						RobotMap.autonomousMode = RobotMap.TURN_AROUND_MODE;
 					}
 					break;
 				case RobotMap.TURN_AROUND_MODE:
 					SmartDashboard.putString("Autonomous Mode", "Turn Around");
 					// Twice the distance because we want two 90 degree turns
-					if (autonomousTurnClockwise(2 * RobotMap.TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
+					if (autonomousTurnClockwise(2 * RobotMap.LEFT_TURN_DISTANCE, 2 * RobotMap.RIGHT_TURN_DISTANCE,  RobotMap.AUTONOMOUS_TURN_SPEED)) {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						Timer.delay(2);
+						
 						RobotMap.autonomousMode = RobotMap.FIRST_DRIVE_BACKWARD_MODE;
 					}
 					break;
@@ -160,7 +160,7 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						Timer.delay(2);
+						
 						RobotMap.autonomousMode = RobotMap.TURN_MODE;
 					}
 					break;
@@ -168,20 +168,20 @@ public class Autonomous {
 					SmartDashboard.putString("Autonomous Mode", "Turn");
 					// Second obstacle to the right (from driver's perspective)
 					if (AutonomousChooser.getDifferenceInPosition() > 0) {
-						if (autonomousTurnCounterclockwise(RobotMap.TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
+						if (autonomousTurnCounterclockwise(RobotMap.LEFT_TURN_DISTANCE, RobotMap.RIGHT_TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							Timer.delay(2);
+							
 							RobotMap.autonomousMode = RobotMap.GO_TO_NEXT_DEFENSE_MODE;
 						}
 					// Second obstacle to the left (from driver's perspective)
 					} else if (AutonomousChooser.getDifferenceInPosition() < 0) {
-						if (autonomousTurnClockwise(RobotMap.TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
+						if (autonomousTurnClockwise(RobotMap.LEFT_TURN_DISTANCE, RobotMap.RIGHT_TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							Timer.delay(2);
+							
 							RobotMap.autonomousMode = RobotMap.GO_TO_NEXT_DEFENSE_MODE;
 						}
 					// You are done
@@ -201,26 +201,26 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						Timer.delay(2);
+						
 						RobotMap.autonomousMode = RobotMap.TURN_TOWARD_DEFENSE_MODE;
 					}
 					break;
 				case RobotMap.TURN_TOWARD_DEFENSE_MODE:
 					SmartDashboard.putString("Autonomous Mode", "Turn Toward Defense");
 					if (AutonomousChooser.getDifferenceInPosition() > 0) {
-						if (autonomousTurnCounterclockwise(RobotMap.TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
+						if (autonomousTurnCounterclockwise(RobotMap.LEFT_TURN_DISTANCE, RobotMap.RIGHT_TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							Timer.delay(2);
+							
 							RobotMap.autonomousMode = RobotMap.SECOND_DRIVE_FORWARD_MODE;
 						}
 					} else if (AutonomousChooser.getDifferenceInPosition() < 0) {
-						if (autonomousTurnClockwise(RobotMap.TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
+						if (autonomousTurnClockwise(RobotMap.LEFT_TURN_DISTANCE, RobotMap.RIGHT_TURN_DISTANCE, RobotMap.AUTONOMOUS_TURN_SPEED)) {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							Timer.delay(2);
+							
 							RobotMap.autonomousMode = RobotMap.SECOND_DRIVE_FORWARD_MODE;
 						}
 					}

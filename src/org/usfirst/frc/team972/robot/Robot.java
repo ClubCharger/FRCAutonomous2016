@@ -71,16 +71,16 @@ public class Robot extends IterativeRobot {
 		botDrive.setSafetyEnabled(false); // Prevents "output not updated enough" error message
 
 		autonomousChooserSystem.checkChoices();
-//		Autonomous.startAutonomous(this, autonomousChooserSystem);
+		Autonomous.startAutonomous(this, autonomousChooserSystem);
 		leftDriveEncoder.reset();
 		rightDriveEncoder.reset();
-		while(isEnabled()) {
-			botDrive.tankDrive(0.3, -0.3); // 0.25 does not work, too slow
-			// Left +, Right - = Turn Right; Left -, Right + = Turn Left
-			// Encoder Values with plus/minus 0.3: le = 1161.000, re = -588.000
-			SmartDashboard.putNumber("le", leftDriveEncoder.get());
-			SmartDashboard.putNumber("re", rightDriveEncoder.get());
-		}
+//		while(isEnabled()) {
+//			botDrive.tankDrive(0.4, -0.4); // 0.25 does not work, too slow
+//			// Left +, Right - = Turn Right; Left -, Right + = Turn Left
+//			// Encoder Values with plus/minus 0.3: le = 1161.000, re = -588.000
+//			SmartDashboard.putNumber("le", leftDriveEncoder.get());
+//			SmartDashboard.putNumber("re", rightDriveEncoder.get());
+//		}
 		botDrive.setSafetyEnabled(false); // Prevents "output not updated
 											// enough" error message
 	}
