@@ -33,12 +33,12 @@ public class Autonomous {
 
 	public static boolean autonomousDrive(int distance, double speed) {
 		double leftDriveSpeed, rightDriveSpeed;
-		if (Robot.leftDriveEncoder.get() < distance) {
+		if (Robot.leftDriveEncoder.get() < distance * 0.9) {
 			leftDriveSpeed = speed;
 		} else {
 			leftDriveSpeed = 0;
 		}
-		if (Robot.rightDriveEncoder.get() < distance) {
+		if (Robot.rightDriveEncoder.get() < distance * 1.0) {
 			rightDriveSpeed = speed;
 		} else {
 			rightDriveSpeed = 0;
@@ -46,7 +46,7 @@ public class Autonomous {
 		Robot.botDrive.tankDrive(leftDriveSpeed, rightDriveSpeed);
 		SmartDashboard.putNumber("Left Speed", leftDriveSpeed);
 		SmartDashboard.putNumber("Right Speed", rightDriveSpeed);
-		return Robot.leftDriveEncoder.get() >= distance && Robot.rightDriveEncoder.get() >= distance;
+		return Robot.leftDriveEncoder.get() >= distance * 0.9 && Robot.rightDriveEncoder.get() >= distance * 1.0;
 	}
 	
 	public static boolean autonomousTurnClockwise(int leftDistance, int rightDistance, double speed) {
@@ -137,7 +137,7 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						
+						Timer.delay(0.25);
 						RobotMap.autonomousMode = RobotMap.TURN_AROUND_MODE;
 					}
 					break;
@@ -148,7 +148,7 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						
+						Timer.delay(0.25);
 						RobotMap.autonomousMode = RobotMap.FIRST_DRIVE_BACKWARD_MODE;
 					}
 					break;
@@ -160,7 +160,7 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						
+						Timer.delay(0.25);
 						RobotMap.autonomousMode = RobotMap.TURN_MODE;
 					}
 					break;
@@ -172,7 +172,7 @@ public class Autonomous {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							
+							Timer.delay(0.25);
 							RobotMap.autonomousMode = RobotMap.GO_TO_NEXT_DEFENSE_MODE;
 						}
 					// Second obstacle to the left (from driver's perspective)
@@ -181,7 +181,7 @@ public class Autonomous {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							
+							Timer.delay(0.25);
 							RobotMap.autonomousMode = RobotMap.GO_TO_NEXT_DEFENSE_MODE;
 						}
 					// You are done
@@ -201,7 +201,7 @@ public class Autonomous {
 						Robot.botDrive.tankDrive(0, 0);
 						Robot.leftDriveEncoder.reset();
 						Robot.rightDriveEncoder.reset();
-						
+						Timer.delay(0.25);
 						RobotMap.autonomousMode = RobotMap.TURN_TOWARD_DEFENSE_MODE;
 					}
 					break;
@@ -212,7 +212,7 @@ public class Autonomous {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							
+							Timer.delay(0.25);
 							RobotMap.autonomousMode = RobotMap.SECOND_DRIVE_FORWARD_MODE;
 						}
 					} else if (AutonomousChooser.getDifferenceInPosition() < 0) {
@@ -220,7 +220,7 @@ public class Autonomous {
 							Robot.botDrive.tankDrive(0, 0);
 							Robot.leftDriveEncoder.reset();
 							Robot.rightDriveEncoder.reset();
-							
+							Timer.delay(0.25);
 							RobotMap.autonomousMode = RobotMap.SECOND_DRIVE_FORWARD_MODE;
 						}
 					}
